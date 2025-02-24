@@ -3,6 +3,11 @@ package com.problems.arraysAndStrings;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+ * Question:
+ * Given two strings write a function to check of one string is a permutation of another
+ * permutation of a string means a string where sequence of all characters may be different using same set of characters as string1
+ * */
 public class checkPermutation {
     private static boolean bruteForceSolution(String s1, String s2) {
         /*
