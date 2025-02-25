@@ -12,7 +12,7 @@ package com.problems.arraysAndStrings;
 * */
 public class RotateMatrix {
 
-    public static void rotateImageUsingExtraSpace(int[][] matrix) {
+    private static void rotateImageUsingExtraSpace(int[][] matrix) {
         /*
         * Intent: 1. Create a new matrix and copy elements in given matrix reverse order
         * */
@@ -28,12 +28,12 @@ public class RotateMatrix {
         System.out.println("\nMatrix after 90 degree rotation:");
         printMatrix(resultMatrix);
         /*
-        * Time Complexity = o(n) * o(n) = o(n^2)
-        * Space Complexity = o(n) * o(n) = o(n^2)
+        * Time Complexity = o(n) * o(m) = o(m*n)
+        * Space Complexity = o(n) * o(m) = o(m*n)
         * */
     }
 
-    public static void rotateMatrixUsingTransposeMethod(int[][] matrix) {
+    private static void rotateMatrixUsingTransposeMethod(int[][] matrix) {
         /*
         * Intent : 1. Find a transpose of a matrix by swapping a[i][j] with a[j][i]
         *          2. Reverse the columns of transpose matrix to get rotated matrix
@@ -70,13 +70,13 @@ public class RotateMatrix {
         System.out.println("\nMatrix after 90 degree rotation:");
         printMatrix(matrix);
         /*
-         * Time Complexity = o(n^2) + o(n^2) = o(n^2)
+         * Time Complexity = o(n) * o(m) = o(m*n)
          * Space Complexity = o(1)
          * */
     }
 
     // Helper method to print the matrix
-    public static void printMatrix(int[][] matrix) {
+    private static void printMatrix(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 System.out.print(matrix[i][j] + " ");
@@ -95,7 +95,7 @@ public class RotateMatrix {
         System.out.println("Original Matrix:");
         printMatrix(image);
 
-        //Brute Force Solution - using extra space - o(n^2)
+        //Brute Force Solution - using extra space - o(n) * o(m) = o(m*n)
         rotateImageUsingExtraSpace(image);
 
         //Optimised solution using transpose method
