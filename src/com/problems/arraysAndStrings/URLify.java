@@ -3,11 +3,11 @@ package com.problems.arraysAndStrings;
 import java.util.Arrays;
 
 /*
- * Question:
- * Write a method to replace all spaces in a string with '%20'.
- * You may assume that the string has sufficient space at the end to hold additional characters
- * and that you're given a true length of the string. Replace should be done in-place
- * */
+* Question:
+* Write a method to replace all spaces in a string with '%20'.
+* You may assume that the string has sufficient space at the end to hold additional characters
+* and that you're given a true length of the string. Replace should be done in-place
+* */
 public class URLify {
 
     private static String solutionUsingStringReplaceI(String str) {
@@ -26,9 +26,9 @@ public class URLify {
         str = str.trim();
         return str.replaceAll(" ","%20");
         /*
-         * Time Complexity = o(n)
-         * Space Complexity = o(1);
-         * */
+        * Time Complexity = o(n)
+        * Space Complexity = o(1);
+        * */
     }
 
     private static String betterSolutionUsingArrayInput(char[] arr) {
@@ -57,9 +57,9 @@ public class URLify {
         }
         return Arrays.toString(arr);
         /*
-         * Time Complexity = o(n)
-         * Space Complexity = o(1);
-         * */
+        * Time Complexity = o(n)
+        * Space Complexity = o(1);
+        * */
     }
 
     public static void main (String[] args) {

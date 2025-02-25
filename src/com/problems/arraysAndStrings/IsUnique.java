@@ -11,7 +11,11 @@ import java.util.Set;
 * */
 public class IsUnique {
     private static void bruteForceSolution1(String str) {
-        //intent : Compare every character with every other character and check if it is repeated
+        /*
+        * intent : Compare every character with every other character
+        *          and check if it is repeated
+        * */
+
         int length = str.length();
         for(int i=0; i<length; i++) {
             for(int j=i+1; j<length; j++) {
@@ -23,14 +27,16 @@ public class IsUnique {
         }
         System.out.println(str + ": All characters are unique");
         /*
-         * Time Complexity = O(n) * o(n)
-         *                 = o(n^2)
-         * Space Complexity = o(1)
-         * */
+        * Time Complexity = O(n) * o(n)
+        *                 = o(n^2)
+        * Space Complexity = o(1)
+        * */
     }
 
     private static void bruteForceSolution2(String str) {
-        //intent : search every character and check if it is repeated
+        /*
+        * intent : search every character and check if it is repeated
+        * */
         int length = str.length();
         for(int i=0; i<length; i++) {
             char ch = str.charAt(i);
@@ -48,7 +54,10 @@ public class IsUnique {
     }
 
     private static void solutionUsingHashSet(String str) {
-        //intent : While traversing array store each character in a set and check if it is repeated
+        /*
+        * intent : While traversing array store each character in a set
+        *          and check if it is repeated
+        * */
         int length = str.length();
         Set<Character> set = new HashSet<>();
         for(int i=0; i<length; i++) {
@@ -61,14 +70,17 @@ public class IsUnique {
         }
         System.out.println(str + ": All characters are unique");
         /*
-         * Time Complexity = O(n) * o(1) -- one for forloop and another for searching for position everytime
-         *                 = o(n)
-         * Space Complexity = o(n)
-         * */
+        * Time Complexity = O(n) * o(1) -- one for forloop and another for searching for position everytime
+        *                 = o(n)
+        * Space Complexity = o(n)
+        * */
     }
 
     private static void solutionUsingSorting(String str) {
-        //intent : convert string to char array, Sort array and check adjacent characters
+        /*
+        * intent : convert string to char array, Sort array
+        *          and check adjacent characters
+        * */
         char[] arr = str.toCharArray();
         Arrays.sort(arr);
         for(int i=0; i<arr.length-1; i++) {
@@ -79,13 +91,18 @@ public class IsUnique {
         }
         System.out.println(str + ": All characters are unique");
         /*
-         * Time Complexity = o(n log n) + o(n) -- o(n log n) for sorting and o(n) for traversal
-         *                 = o(n log n)
-         * Space Complexity = o(1)
-         * */
+        * Time Complexity = o(n log n) + o(n) -- o(n log n) for sorting and o(n) for traversal
+        *                 = o(n log n)
+        * Space Complexity = o(1)
+        * */
     }
 
     private static void solutionUsingBitManipulation(String str) {
+        /*
+        * Intent : Assuming that str has a-z characters
+        *          hence taking checker variable as 32 bits representation
+        *          We will set each bit for every alphabet w.r.t 'a'
+        * */
         int length = str.length();
         int checker = 0;
         for(int i=0; i<length; i++) {
@@ -98,10 +115,10 @@ public class IsUnique {
         }
         System.out.println(str + ": All characters are unique");
         /*
-         * Time Complexity = o(n) -- o(n) for traversal
-         *                 = o(n)
-         * Space Complexity = o(1)
-         * */
+        * Time Complexity = o(n) -- o(n) for traversal
+        *                 = o(n)
+        * Space Complexity = o(1)
+        * */
     }
 
     public static void main (String[] args) {
