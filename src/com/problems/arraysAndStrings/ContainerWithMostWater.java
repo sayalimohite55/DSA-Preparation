@@ -19,7 +19,7 @@ public class ContainerWithMostWater {
         int maxArea = 0;
         for(int i=0;i<height.length; i++) {
             for(int j=i+1;j<height.length; j++) {
-                int width = j-1;
+                int width = j-i;
                 maxArea = Math.max(maxArea, Math.min(height[i],height[j]) * width);
             }
         }
