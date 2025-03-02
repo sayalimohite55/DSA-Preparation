@@ -8,7 +8,7 @@ import java.util.Map;
 * Given two strings write a function to check of one string is a permutation of another
 * permutation of a string means a string where sequence of all characters may be different using same set of characters as string1
 * */
-public class checkPermutation {
+public class CheckPermutation {
     private static boolean bruteForceSolution(String s1, String s2) {
         /*
         * Intent : check if all characters in string one is present in another string
