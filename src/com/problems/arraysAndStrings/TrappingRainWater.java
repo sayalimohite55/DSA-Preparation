@@ -37,6 +37,40 @@ public class TrappingRainWater {
         * */
     }
 
+    private static int maxWaterTrappedUsingDP(int[] height) {
+        /*
+         * Intent: Use Dynamic Programming
+         * 1. Maintain two arrays to identify max from left and right for every ith value
+         * 2. At any given index, subtract the ith value from the max of left and right max
+         *    to get amount of trapped water
+         * */
+        int maxWater =0;
+
+        //Declare arrays to hold max information from both sides
+        int[] leftMax = new int[height.length];
+        int[] rightMax = new int[height.length];
+
+        leftMax[0] = height[0];
+        for(int i=1; i<height.length; i++) {
+            leftMax[i] = Math.max(leftMax[i-1],height[i]);
+        }
+
+        rightMax[height.length-1] = height[height.length-1];
+        for(int i=height.length-2; i>=0; i--) {
+            rightMax[i] = Math.max(rightMax[i+1],height[i]);
+        }
+
+        for(int i=1; i<height.length-1; i++) {
+            maxWater += Math.min(leftMax[i],rightMax[i]) - height[i];
+        }
+
+        return maxWater;
+        /*
+         * Time Complexity = o(n) +o(n) +o(n) = o(3n) = o(n)
+         * Space Complexity = o(n) +o(n) = o(2n) = o(n)
+         * */
+    }
+
     private static int maxWaterTrappedUsingTwoPointers(int[] height) {
         /*
          * Intent:
@@ -66,40 +100,6 @@ public class TrappingRainWater {
          * Time Complexity = o(n)
          * Space Complexity = o(1)
          * */
-    }
-
-    private static int maxWaterTrappedUsingDP(int[] height) {
-        /*
-        * Intent: Use Dynamic Programming
-        * 1. Maintain two arrays to identify max from left and right for every ith value
-        * 2. At any given index, subtract the ith value from the max of left and right max
-        *    to get amount of trapped water
-        * */
-        int maxWater =0;
-
-        //Declare arrays to hold max information from both sides
-        int[] leftMax = new int[height.length];
-        int[] rightMax = new int[height.length];
-
-        leftMax[0] = height[0];
-        for(int i=1; i<height.length; i++) {
-            leftMax[i] = Math.max(leftMax[i-1],height[i]);
-        }
-
-        rightMax[height.length-1] = height[height.length-1];
-        for(int i=height.length-2; i>=0; i--) {
-            rightMax[i] = Math.max(rightMax[i+1],height[i]);
-        }
-
-        for(int i=1; i<height.length-1; i++) {
-            maxWater += Math.min(leftMax[i],rightMax[i]) - height[i];
-        }
-
-        return maxWater;
-        /*
-        * Time Complexity = o(n)
-        * Space Complexity = o(1)
-        * */
     }
 
     public static void main(String[] args) {
