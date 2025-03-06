@@ -15,46 +15,6 @@ package com.problems.dfs_bfs;
 import java.util.*;
 
 public class FindIfPathExistsInGraph {
-    private static boolean validPathUsingDFSRecursive(int n, int[][] edges, int source, int destination) {
-        /*
-         * Intent:
-         * 1. start with source node as current node, mark it as visited
-         * 2. For each neighbor node nn of current node
-         *      - check if nn == destination node, if yes return true
-         *      - else step 2
-         * Above step will execute recursively
-         * */
-        Map<Integer, List<Integer>> graph = new HashMap<>();
-
-        for(int[] edge: edges) {
-            int a = edge[0], b = edge[1];
-            graph.computeIfAbsent(a,val-> new ArrayList<>()).add(b);
-            graph.computeIfAbsent(b,val-> new ArrayList<>()).add(a);
-        }
-        boolean[] visited = new boolean[n];
-        return dfs(graph, visited, source, destination);
-        /*
-        * Time Complexity = o(n +m)
-        * Space Complexity = o(n +m)
-        * */
-    }
-
-    private static boolean dfs(Map<Integer, List<Integer>> graph, boolean[] visited, int currentNode, int destNode) {
-        if(currentNode == destNode)
-            return true;
-
-        if(!visited[currentNode]) {
-            for(int node: graph.get(currentNode)) {
-                if(!visited[node]) {
-                    visited[node] = true;
-                    if(dfs(graph, visited, node, destNode))
-                        return true;
-                }
-            }
-        }
-        return false;
-    }
-
     private static boolean validPathUsingBFS(int n, int[][] edges, int source, int destination) {
         /*
         * Intent:
@@ -73,6 +33,7 @@ public class FindIfPathExistsInGraph {
             graph.computeIfAbsent(b,val-> new ArrayList<>()).add(a);
         }
 
+        //First In First Out
         Queue<Integer> q = new LinkedList<>();
         boolean[] visited = new boolean[n];
 
@@ -98,14 +59,99 @@ public class FindIfPathExistsInGraph {
         * */
     }
 
+    private static boolean validPathUsingDFSRecursive(int n, int[][] edges, int source, int destination) {
+        /*
+         * Intent:
+         * 1. start with source node as current node, mark it as visited
+         * 2. For each neighbor node nn of current node
+         *      - check if nn == destination node, if yes return true
+         *      - else step 2
+         * Above step will execute recursively
+         * */
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+
+        for(int[] edge: edges) {
+            int a = edge[0], b = edge[1];
+            graph.computeIfAbsent(a,val-> new ArrayList<>()).add(b);
+            graph.computeIfAbsent(b,val-> new ArrayList<>()).add(a);
+        }
+        boolean[] visited = new boolean[n];
+        return dfs(graph, visited, source, destination);
+        /*
+         * Time Complexity = o(n +m)
+         * Space Complexity = o(n +m)
+         * */
+    }
+
+    private static boolean dfs(Map<Integer, List<Integer>> graph, boolean[] visited, int currentNode, int destNode) {
+        if(currentNode == destNode)
+            return true;
+
+        if(!visited[currentNode]) {
+            for(int node: graph.get(currentNode)) {
+                if(!visited[node]) {
+                    visited[node] = true;
+                    if(dfs(graph, visited, node, destNode))
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private static boolean validPathUsingDFSIterative(int n, int[][] edges, int source, int destination) {
+        /*
+         * Intent:
+         * 1. start with source node as current node, mark it as visited
+         *
+         * */
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+
+        for(int[] edge: edges) {
+            int a = edge[0], b = edge[1];
+            graph.computeIfAbsent(a,val-> new ArrayList<>()).add(b);
+            graph.computeIfAbsent(b,val-> new ArrayList<>()).add(a);
+        }
+
+        //Last In Last Out
+        Stack<Integer> stack = new Stack<>();
+        boolean[] visited = new boolean[n];
+
+        visited[source] = true;
+        stack.push(source);
+
+        while(!stack.isEmpty()) {
+            int currentNode = stack.pop();
+            if(currentNode == destination)
+                return true;
+
+            for(int node: graph.get(currentNode)) {
+                if(!visited[node]) {
+                    visited[node] = true;
+                    stack.push(node);
+                }
+            }
+        }
+        return false;
+        /*
+         * Time Complexity = o(n +m)
+         * Space Complexity = o(n +m)
+         * */
+    }
+
     public static void main(String[] args) {
         //BFS - o(n + m)
         System.out.println("Using BFS: "+validPathUsingBFS(3, new int[][]{{0,1},{1,2},{2,0}},0,2));
         System.out.println("Using BFS: "+validPathUsingBFS(6, new int[][]{{0,1},{0,2},{3,5},{5,4},{4,3}},0,5));
 
-        //DFS - o(n + m)
+        //DFS Recursive- o(n + m)
         System.out.println();
-        System.out.println("Using DFS: "+validPathUsingBFS(3, new int[][]{{0,1},{1,2},{2,0}},0,2));
-        System.out.println("Using DFS: "+validPathUsingBFS(6, new int[][]{{0,1},{1,2},{2,0}},0,5));
+        System.out.println("Using DFS: "+validPathUsingDFSRecursive(3, new int[][]{{0,1},{1,2},{2,0}},0,2));
+        System.out.println("Using DFS: "+validPathUsingDFSRecursive(6, new int[][]{{0,1},{1,2},{2,0}},0,5));
+
+        //DFS Iterative- o(n + m)
+        System.out.println();
+        System.out.println("Using DFS: "+validPathUsingDFSIterative(3, new int[][]{{0,1},{1,2},{2,0}},0,2));
+        System.out.println("Using DFS: "+validPathUsingDFSIterative(6, new int[][]{{0,1},{1,2},{2,0}},0,5));
     }
 }
