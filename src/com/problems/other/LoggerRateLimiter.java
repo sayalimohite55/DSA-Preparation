@@ -46,5 +46,9 @@ public class LoggerRateLimiter {
         for(Map.Entry<Integer,String> entry : inputMap.entrySet()) {
             System.out.println(logger.shouldPrintMessage(entry.getKey(),entry.getValue()));
         }
+        /*
+        * Time Complexity = o(1)
+        * Space Complexity = o(n) --> where n is count of instructions
+        * */
     }
 }
