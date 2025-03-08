@@ -1,4 +1,4 @@
-package com.problems.dp;
+package com.problems.arraysAndStrings;
 
 /*
 * Question:
