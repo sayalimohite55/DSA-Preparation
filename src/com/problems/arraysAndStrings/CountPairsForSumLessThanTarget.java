@@ -1,4 +1,4 @@
-package com.problems.other;
+package com.problems.arraysAndStrings;
 
 import java.util.Arrays;
 
@@ -42,7 +42,7 @@ public class CountPairsForSumLessThanTarget {
         return count;
         /*
          * Time Complexity = o(n log n + n) = o(n log n)
-         * Space Complexity = o(n log n)
+         * Space Complexity = o(log n) or o(n)
          * */
     }
 
