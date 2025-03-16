@@ -1,6 +1,5 @@
 package com.problems.arraysAndStrings;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +11,7 @@ import java.util.Map;
 * x if x >= 0.
 * -x if x < 0.
 * */
-public class CountPairsWithDifferenceK {
+public class CountPairsWithAbsoluteDifferenceK {
     private static int countPairsBruteForceSolution(int[] arr, int k) {
         int n = arr.length;
         int count = 0;
