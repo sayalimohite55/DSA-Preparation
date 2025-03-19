@@ -9,7 +9,7 @@ import java.util.*;
  * Return the sum of the three integers.
  * You may assume that each input would have exactly one solution.
  * */
-public class ClosestThreeSum {
+public class ThreeSumClosest {
     private static int bruteForceSolution(int arr[], int target) {
         /*
          * Intent: Go through every unique i,j,k combination to identify triplet
