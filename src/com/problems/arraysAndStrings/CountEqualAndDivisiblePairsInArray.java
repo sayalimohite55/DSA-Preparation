@@ -23,7 +23,7 @@ public class CountEqualAndDivisiblePairsInArray {
     }
 
     public static void main(String[] args) {
-        System.out.println("Couunt: "+countPairs(new int[]{3,1,2,2,2,1,3}, 2));
-        System.out.println("Couunt: "+countPairs(new int[]{1,2,3,4}, 1));
+        System.out.println("Count: "+countPairs(new int[]{3,1,2,2,2,1,3}, 2));
+        System.out.println("Count: "+countPairs(new int[]{1,2,3,4}, 1));
     }
 }

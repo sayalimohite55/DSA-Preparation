@@ -52,7 +52,7 @@ public class CountPairsForSumLessThanTarget {
         System.out.println("No of pairs: "+countPairsBruteForceSolution(new int[]{-6,2,5,-2,-7,-1,3},-2));
 
         //Solution using sorting - o(n log n)
-        System.out.println("No of pairs: "+countPairsUsingSorting(new int[]{-1,1,2,3,1},2));
+        System.out.println("\nNo of pairs: "+countPairsUsingSorting(new int[]{-1,1,2,3,1},2));
         System.out.println("No of pairs: "+countPairsUsingSorting(new int[]{-6,2,5,-2,-7,-1,3}, -2));
     }
 }

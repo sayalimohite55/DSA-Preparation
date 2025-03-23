@@ -71,10 +71,10 @@ public class CheckPermutation {
     public static void main (String[] args) {
         //O(n^2) Solution
         System.out.println("Test case I: "+ bruteForceSolution("adefghacb", "abdefghac"));
-        System.out.println("Test case I: "+ bruteForceSolution("abcdefgh", "s"));
+        System.out.println("Test case II: "+ bruteForceSolution("abcdefgh", "s"));
 
         //O(n) Solution
-        System.out.println("\nTest case I: "+ bruteForceSolution("adefghacb", "abdefghac"));
-        System.out.println("Test case I: "+ bruteForceSolution("abcdefgh", "s"));
+        System.out.println("\nTest case I: "+ solutionUsingHashMap("adefghacb", "abdefghac"));
+        System.out.println("Test case II: "+ solutionUsingHashMap("abcdefgh", "s"));
     }
 }

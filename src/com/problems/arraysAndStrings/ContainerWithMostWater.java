@@ -52,12 +52,13 @@ public class ContainerWithMostWater {
     }
 
     public static void main(String[] args) {
-        int[] height = new int[]{1,8,6,2,5,4,8,3,7};
 
         //brute force solution - o(n^2)
-        System.out.println("Max Area: "+ getMaxAreaBruteForceSolution(height));
+        System.out.println("Max Area: "+ getMaxAreaBruteForceSolution(new int[]{1,8,6,2,5,4,8,3,7}));
+        System.out.println("Max Area: "+ getMaxAreaBruteForceSolution(new int[]{1,1,6,2,7,4,8,1,7}));
 
         //optimised solution - o(n)
-        System.out.println("Max Area: "+ getMaxAreaOptimised(height));
+        System.out.println("\nMax Area: "+ getMaxAreaOptimised(new int[]{1,8,6,2,5,4,8,3,7}));
+        System.out.println("Max Area: "+ getMaxAreaBruteForceSolution(new int[]{1,1,6,2,7,4,8,1,7}));
     }
 }
