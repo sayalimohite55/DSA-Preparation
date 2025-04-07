@@ -1,4 +1,4 @@
-package com.problems.other;
+package com.problems.simulation;
 
 import java.util.Deque;
 import java.util.HashSet;
@@ -9,7 +9,7 @@ import java.util.Set;
 * Question:
 * Design a Snake game that is played on a device with screen size height x width.
 * Play the game online if you are not familiar with the game.
-* The snake is initially positioned at the top left corner (0, 0) with a length of 1 unit.
+* The snake is initially positioned in the top left corner (0, 0) with a length of 1 unit.
 * You are given an array food where food[i] = (ri, ci) is the row and column position of a piece of food
 * that the snake can eat. When a snake eats a piece of food, its length and the game's score both increase by 1.
 * Each piece of food appears one by one on the screen, meaning the second piece of food will not appear until
@@ -25,17 +25,17 @@ import java.util.Set;
 *         If the game is over, return -1.
 * */
 
-class Pair{
-    int key;
-    int value;
+public class SnakeGame {
+    static class Pair{
+        int key;
+        int value;
 
-    public Pair(int key, int value) {
-        this.key = key;
-        this.value = value;
+        public Pair(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
     }
 
-}
-public class SnakeGame {
     Deque<Pair> snake;
     Set<Pair> snakeCellsSet;
     int height;
@@ -60,7 +60,7 @@ public class SnakeGame {
         snakeCellsSet = new HashSet<>();
 
         //Add start index of snake which is 0,0
-        Pair pair = new Pair(0,0);
+        Pair pair = new Pair(0, 0);
         snake.offerFirst(pair);
         snakeCellsSet.add(pair);
     }
@@ -92,16 +92,16 @@ public class SnakeGame {
         }
 
         /*
-        * Usecases:
+        * Use cases:
         * 1. Check boundaries (snake hits either of the walls of grid)
-        * 2. Check if its a food game (Snake eats food and score increases by 1)
+        * 2. Check if it's a food game (Snake eats food and score increases by 1)
         * 3. Snake is moved by 1 cell (Check if snake bites itself)
         * */
         boolean hitsBoundary = rowIndex < 0 || rowIndex == this.height || columnIndex < 0 || columnIndex == this.width;
         if(hitsBoundary)
             return -1;
 
-        Pair newCell = new Pair(rowIndex,columnIndex);
+        Pair newCell = new Pair(rowIndex, columnIndex);
         if(foodIndex < food.length && (rowIndex == food[foodIndex][0] && columnIndex == food[foodIndex][1])) {
             foodIndex++;
         } else {

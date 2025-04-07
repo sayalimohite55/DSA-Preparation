@@ -1,8 +1,8 @@
-package com.problems.other;
+package com.problems.simulation;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.TreeMap;
 
 /*
 * Question:
@@ -49,52 +49,44 @@ import java.util.PriorityQueue;
 * stockPrice.update(4, 2);  // Timestamps are [1,2,4] with corresponding prices [3,5,2].
 * stockPrice.minimum();     // return 2, the minimum price is 2 at timestamp 4.
 */
-public class StockPrice {
-    Map<Integer,Integer> timestampWisePriceMap;
+public class StockPriceUsingHashMap {
+    Map<Integer,Integer> timestampMap;
     int currentTimestamp;
-    PriorityQueue<int[]> minHeap, maxHeap;
+    TreeMap<Integer,Integer> priceMap;
 
-    public StockPrice() {
-        this.timestampWisePriceMap = new HashMap<>();
-        this.currentTimestamp = -1;
-        minHeap = new PriorityQueue<>((a,b) -> a[0] - b[0]);
-        maxHeap = new PriorityQueue<>((a,b) -> b[0] - a[0]);
+    public StockPriceUsingHashMap() {
+        timestampMap = new HashMap<>();
+        currentTimestamp = -1;
+        priceMap = new TreeMap<>();
     }
 
     public void update(int timestamp, int price) {
-        timestampWisePriceMap.put(timestamp,price);
-        currentTimestamp = Math.max(currentTimestamp, timestamp);
-        maxHeap.add(new int[]{price, timestamp});
-        minHeap.add(new int[]{price, timestamp});
-    }
+        if(currentTimestamp < timestamp)
+            currentTimestamp = timestamp;
 
-    int current() {
-        return timestampWisePriceMap.get(currentTimestamp);
-    }
-
-    int maximum() {
-        int top[] = maxHeap.peek();
-        //while entries in map and heap don't match remove older values(updated)
-        while(timestampWisePriceMap.get(top[1]) != top[0]) {
-            maxHeap.remove();
-            top = maxHeap.peek();
+        if(timestampMap.containsKey(timestamp)) {
+            int oldPrice = timestampMap.get(timestamp);
+            priceMap.remove(oldPrice);
         }
-        return top[0];
+        timestampMap.put(timestamp,price);
+        priceMap.put(price, timestamp);
     }
 
-    int minimum() {
-        int top[] = minHeap.peek();
-        //while entries in map and heap don't match remove older values(updated)
-        while(timestampWisePriceMap.get(top[1]) != top[0]) {
-            minHeap.remove();
-            top = minHeap.peek();
-        }
-        return top[0];
+    public int current() {
+        return timestampMap.get(currentTimestamp);
+    }
+
+    public int maximum() {
+        return priceMap.lastKey();
+    }
+
+    public int minimum() {
+        return priceMap.firstKey();
     }
 
     public static void main(String[] args) {
         //Example
-        StockPrice stock = new StockPrice();
+        StockPriceUsingHashMap stock = new StockPriceUsingHashMap();
         String[] instructions = new String[]{"update","update","current","maximum","update","maximum","update","minimum"};
         int[][] timestampWithPrice = new int[][]{{1,10},{2,5},{1,3},{4,2}};
 
@@ -118,11 +110,11 @@ public class StockPrice {
             }
         }
         /*
-        * Time Complexity = o(n log n)
-        *   -   For n instructions
-        *   -   For each update in map its takes o(1) time
-        *   -   For each insert in heap it takes o(log n) time
-        * Space Complexity = o(n)
-        * */
+         * Time Complexity = o(n log n)
+         *   -   For n instructions
+         *   -   For each update in map its takes o(1) time
+         *   -   For each insert in hashmap it takes o(1) and in treemap it takes o(log n) time
+         * Space Complexity = o(n)
+         * */
     }
 }

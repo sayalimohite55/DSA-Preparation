@@ -1,4 +1,4 @@
-package com.problems.other;
+package com.problems.simulation;
 
 import java.util.ArrayList;
 import java.util.Collections;
