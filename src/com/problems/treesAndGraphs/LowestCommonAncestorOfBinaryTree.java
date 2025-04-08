@@ -1,4 +1,4 @@
-package com.problems.trees;
+package com.problems.treesAndGraphs;
 
 /*
 * Question:
