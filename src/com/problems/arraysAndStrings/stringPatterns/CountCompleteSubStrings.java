@@ -28,4 +28,5 @@ package com.problems.arraysAndStrings.stringPatterns;
 * 1 <= k <= word.length
 * */
 public class CountCompleteSubStrings {
+    
 }
