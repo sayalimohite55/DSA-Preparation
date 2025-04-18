@@ -56,5 +56,9 @@ public class MaxCountOfVowelsInSubstring {
         System.out.println("Result: "+maxVowels("abciiidef",3));
         System.out.println("Result: "+maxVowels("aeiou",2));
         System.out.println("Result: "+maxVowels("leetcode",3));
+        /*
+        * Time Complexity = o(n)
+        * Space Complexity = o(1)
+        * */
     }
 }
